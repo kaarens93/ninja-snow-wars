@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Snowball Fight</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css" type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+
+
+</head>
+<body>
+    <div id="container">
+        
+        <img src="/static/images/font2.png" id='title'>
+
+        <div id="forms">
+            <!-- <form id='player1_form' method='post'>
+                <p>
+                    <label>player 1:</label>
+                    <span><input type='text' name='player1_name'><input type='submit' value='play'></span>
+                </p>
+            </form>
+            <form id='player2_form' method='post'>
+                <p>
+                    <label>player 2:</label>
+                    <span><input type='text' name='player2_name'><input type='submit' value='play'></span>
+                </p>
+            </form> -->
+            <form id='player1_form' method='post'>
+                <p>
+                    <label>player 1:</label>
+                    <span id='disableP1'><input type='text' name='player1_name'> <input type='submit' value='play' class="btn btn-outline-primary btn-sm"></span>
+                </p>
+            </form>
+            <form id='player2_form' method='post'>
+                <p>
+                    <label>player 2:</label>
+                    <span id='disableP2'><input type='text' disabled name='player2_name'> <input type='submit' value='play' class="btn btn-outline-primary btn-sm"></span>
+                </p>
+            </form>
+            
+            
+        </div>
+        
+        <div id="stats">
+            <div id="score_block">
+                <img src="/static/images/score.png"><div id="scoreboard"></div>
+            </div>
+            <div id="inventory_block">
+                <img src="/static/images/snowballs.png"><div id="inventory"></div>
+            </div>
+
+        </div>
+
+        <canvas id="canvas"></canvas>
+        
+    </div>
+        
+</body>
+<script src='/static/js/game.js'></script>
+</html>
