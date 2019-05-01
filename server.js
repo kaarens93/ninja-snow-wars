@@ -113,19 +113,19 @@ io.on('connection', socket => {
     });
 
     socket.on('throwP1Snowball', data => {
-        players.playerOne.snowballs.push(data);
-        players.playerOne.inventory--;
+        var playerOne = players.playerOne;
+        if (playerOne.inventory > 0) {
+            playerOne.snowballs.push(data);
+            playerOne.inventory--;
+        }
     });
 
     socket.on('throwP2Snowball', data => {
-        players.playerTwo.snowballs.push(data);
-        players.playerTwo.inventory--;
+        var playerTwo = players.playerTwo;
+        if (playerTwo.inventory > 0) {
+            playerTwo.snowballs.push(data);
+            playerTwo.inventory--;
+        }
     });
 
 })
-
-// 1. ask client for name and store user input into 'var name'
-// 2. client emits 'sign_in' and passes 'name' to server
-// 3. server listens for 'sign_in' and broadcasts 'new_player', stores name/sessionid of new player into 'var players', emits 'current_players' with all players data to new player
-// 4. client listens for 'new_player' and emits 'movement' and passes 'move' to server
-// 5. server listens for 'movement' and broadcasts 'change_position', store move 
