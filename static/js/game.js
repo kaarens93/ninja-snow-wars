@@ -35,6 +35,22 @@ socket.on('state', data => {
     showScore();
     showInventory();
 
+    if (playerOne.inventory == 0 && playerTwo.inventory == 0 && playerOne.snowballs.length == 0 && playerTwo.snowballs.length == 0) {
+        ctx.font = "100px Helvetica";
+        ctx.textAlign = "center";
+        ctx.fillText("game over", 400, 150);
+
+        if (playerOne.score > playerTwo.score) {
+            ctx.fillText(playerOne.name + " won!", 400, 275);
+        }
+        else if (playerTwo.score > playerOne.score) {
+            ctx.fillText(playerTwo.name + " won!", 400, 275);
+        }
+        else {
+            ctx.fillText("tied game!", 400, 275);
+        }
+    }
+
 });
 
 function showScore(){
@@ -101,12 +117,6 @@ document.addEventListener('keydown', event => {
         } else {
             movement.walkP1 = 1;
         }
-        // if (playerOne.walkVal == 1) {
-        //     playerOne.walkVal = 2;
-        // } else {
-        //     playerOne.walkVal = 1;
-        // }
-
         if (event.keyCode == 38) {
             movement.upP1 = true;
         }
@@ -126,12 +136,6 @@ document.addEventListener('keydown', event => {
         } else {
             movement.walkP2 = 1;
         }
-        // if (playerTwo.walkVal == 1) {
-        //     playerTwo.walkVal = 2;
-        // } else {
-        //     playerTwo.walkVal = 1;
-        // }
-
         if (event.keyCode == 38) {
             movement.upP2 = true;
         }
