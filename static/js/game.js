@@ -24,12 +24,10 @@ socket.on('state', data => {
   
     for (var i = 0; i < playerOne.snowballs.length; i++) {
         var snowball = playerOne.snowballs[i];
-        console.log('player1 snowball: ' + snowball);
         ctx.drawImage(imgSnowball, snowball.x, snowball.y, 47, 47);
     }
     for (var i = 0; i < playerTwo.snowballs.length; i++) {
         var snowball = playerTwo.snowballs[i];
-        console.log('player2 snowball: ' + snowball);
         ctx.drawImage(imgSnowball, snowball.x, snowball.y, 47, 47);
     }
     showScore();
@@ -65,10 +63,15 @@ function showInventory(){
 }
 
 $('#player1_form').submit( () => {
-    var name = $('input[name=player1_name]').val();
-    player = 1;
-    socket.emit('enterPlayer1', name);
-    return false;
+    if (!players.startGame) {
+        var name = $('input[name=player1_name]').val();
+        player = 1;
+        socket.emit('enterPlayer1', name);
+        return false;
+    }
+    else {
+        alert("game is in session!");
+    }
 });
 
 socket.on('enablePlayer2', data => {
@@ -76,7 +79,7 @@ socket.on('enablePlayer2', data => {
     content = `<input type="text" name='player2_name'>
     <input type="submit" value='play'>`
     $('#disableP2').html(content)
-
+    
     // disables player 1 form
     html = `<input type="text" disabled value=${data}>
     <input type="submit" disabled value='play'>`
@@ -84,10 +87,15 @@ socket.on('enablePlayer2', data => {
 })
 
 $('#player2_form').submit( () => {
-    var name = $('input[name=player2_name]').val();
-    player = 2;
-    socket.emit('enterPlayer2', name);
-    return false;
+    if (!players.startGame) {
+        var name = $('input[name=player2_name]').val();
+        player = 2;
+        socket.emit('enterPlayer2', name);
+        return false;
+    }
+    else {
+        alert("game is in session!");
+    }
 });
 
 socket.on('hideForms', () => {
