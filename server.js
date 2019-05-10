@@ -5,7 +5,6 @@ var path = require('path')
 var io = require('socket.io')(server)
 app.use('/static', express.static(__dirname+'/static'))
 
-
 app.get('/', (req,res) => {
     res.sendFile(path.join(__dirname, 'index.html'))
 })
@@ -40,10 +39,11 @@ io.on('connection', socket => {
         if (players.startGame) {
             var playerOne = players.playerOne;
             var playerTwo = players.playerTwo;
-
+            
             for (var i = 0; i < playerOne.snowballs.length; i++) {
                 var snowball = playerOne.snowballs[i];
                 snowball.x += 2;
+
                 // remove snowballs that go off screen
                 if (snowball.x > 750) {
                     playerOne.snowballs.splice(i, 1);
@@ -115,6 +115,7 @@ io.on('connection', socket => {
     socket.on('throwP1Snowball', data => {
         var playerOne = players.playerOne;
         if (playerOne.inventory > 0) {
+            playerOne.direction = 'right';
             playerOne.snowballs.push(data);
             playerOne.inventory--;
         }
@@ -123,6 +124,7 @@ io.on('connection', socket => {
     socket.on('throwP2Snowball', data => {
         var playerTwo = players.playerTwo;
         if (playerTwo.inventory > 0) {
+            playerTwo.direction = 'left';
             playerTwo.snowballs.push(data);
             playerTwo.inventory--;
         }

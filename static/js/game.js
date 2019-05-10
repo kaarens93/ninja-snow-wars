@@ -71,18 +71,19 @@ $('#player1_form').submit( () => {
     }
     else {
         alert("game is in session!");
+        return false;
     }
 });
 
 socket.on('enablePlayer2', data => {
     // enables player 2 form
     content = `<input type="text" name='player2_name'>
-    <input type="submit" value='play'>`
+    <input type="submit" value='play' class="btn btn-outline-primary btn-sm">`
     $('#disableP2').html(content)
     
     // disables player 1 form
     html = `<input type="text" disabled value=${data}>
-    <input type="submit" disabled value='play'>`
+    <input type="submit" disabled value='play' class="btn btn-outline-primary btn-sm">`
     $('#disableP1').html(html)
 })
 
@@ -95,6 +96,7 @@ $('#player2_form').submit( () => {
     }
     else {
         alert("game is in session!");
+        return false;
     }
 });
 
