@@ -34,9 +34,9 @@ var players = {
 };
 
 io.on('connection', socket => {
-    
+
     setInterval( () => {
-        if (players.startGame) {
+        if (players.startGame ) {
             var playerOne = players.playerOne;
             var playerTwo = players.playerTwo;
             
@@ -51,7 +51,6 @@ io.on('connection', socket => {
                 // check if player 1's snowballs collide with player 2
                 if ((playerTwo.x + 58 > snowball.x) && (playerTwo.y + 86 > snowball.y) && (snowball.y + 46 > playerTwo.y) && (playerTwo.x < snowball.x + 46)) {
                     playerOne.snowballs.splice(i, 1);
-                    console.log(`player 2 has been hit; player1: ${playerOne.score} - player2: ${playerTwo.score}`);
                     playerTwo.score -= 10;
                     playerOne.score += 5;
                 }
@@ -64,16 +63,14 @@ io.on('connection', socket => {
                 }
                 if ((playerOne.x + 58 > snowball.x) && (playerOne.y + 86 > snowball.y) && (snowball.y + 46 > playerOne.y) && (playerOne.x < snowball.x + 46)) {
                     playerTwo.snowballs.splice(i, 1);
-                    console.log(`player 1 has been hit; player1: ${playerOne.score} - player2: ${playerTwo.score}`);
                     playerOne.score -= 10;
                     playerTwo.score += 5;
                 }     
             }
             io.sockets.emit('state', players);
         }
-
     }, 1000/60);
-
+            
     socket.on('enterPlayer1', data => {
         players.playerOne.name = data;
         socket.broadcast.emit('enablePlayer2', players.playerOne.name);
