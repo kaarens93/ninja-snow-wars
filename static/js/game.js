@@ -194,3 +194,8 @@ setInterval( () => {
     }
 
 }, 1000/60);
+
+// socket.on('restart', data => {
+//     players = data;
+//     player = 0;
+// })
