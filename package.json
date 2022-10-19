@@ -13,8 +13,8 @@
   "dependencies": {
     "ejs": "^2.6.1",
     "express": "^4.16.4",
-    "forever-monitor": "^1.7.1",
-    "pm2": "^3.5.1",
+    "forever-monitor": "^3.0.3",
+    "pm2": "^5.2.2",
     "socket.io": "^2.2.0"
   }
 }
